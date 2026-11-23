@@ -1,6 +1,6 @@
 # Deep Galerkin Method for Optimal Stopping and Stochastic Control
 
-> **Status:** Work in progress. ACT496 reading course, *Deep Learning for Stochastic Control*, University of Toronto, Fall 2026. Supervisor: Prof. Sebastian Jaimungal. The final course report is due in December 2026.
+> **Status:** Work in progress. ACT496 reading course, *Deep Learning for Stochastic Control*, University of Toronto, Fall 2026. Supervisor: Prof. Sebastian Jaimungal. The written course report (co-authored with two classmates, due December 10, 2026) is not included here; it is available on request.
 
 ## Question
 
