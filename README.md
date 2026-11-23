@@ -68,4 +68,3 @@ This was a reading course focused on understanding these methods. As permitted b
 - compare the DGM results with the finite-difference, closed-form and Monte Carlo benchmarks, and interpret where and why they disagree,
 - present the results to my supervisor each week and answer his questions.
 
-The written course report was co-authored with two classmates and is not included here.
