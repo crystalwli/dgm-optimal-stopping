@@ -12,21 +12,25 @@ Every DGM result here is checked against an independent benchmark: a closed-form
 
 **1. A near-zero loss can hide a wrong answer** ([`01_smoothing_fix`](01_smoothing_fix/))
 
-With the terminal condition built into the network, $g_\theta = H + (T-t)N_\theta$, a non-smooth payoff $H$ (an indicator, or $(1-x)_+$) makes the trivial network $N_\theta \equiv 0$ an exact minimiser of the *sampled* loss. Autograd sees $H'' = 0$ almost everywhere, and the kink is never sampled. Training reaches a loss of $2\times10^{-7}$ while the error against the exact solution stays at 0.4–0.5. Gaussian smoothing of the payoff fixes this, keeps a closed-form solution, and brings the error down to at most 0.015.
+With the terminal condition built into the network, $`g_\theta = H + (T-t)N_\theta`$, a non-smooth payoff $`H`$ (an indicator, or $`(1-x)_+`$) makes the trivial network $`N_\theta \equiv 0`$ an exact minimiser of the *sampled* loss. Autograd sees $`H'' = 0`$ almost everywhere, and the kink is never sampled. Training reaches a loss of $`2\times10^{-7}`$ while the error against the exact solution stays at 0.4–0.5. Gaussian smoothing of the payoff fixes this, keeps a closed-form solution, and brings the error down to at most 0.015.
 
 ![Smoothed payoffs: DGM vs exact solution](figures/01_smoothing_fix.png)
 
 **2. Two-dimensional stopping region** ([`02_compound_and_2d_stopping`](02_compound_and_2d_stopping/))
 
-For $dX = X\,dW_1$, $dY = Y\,dW_2$ (independent) and reward $(e^{-rt} - \min(X, Y))_+$, the stopping region is contained in an L-shaped set, $\{\min(x,y) \le x^*_1(t)\}$, where $x^*_1$ is the one-dimensional boundary. The DGM and FD stop/continue decisions agree on 98–99% of grid points; the largest value error is 0.03–0.04. The same notebook also covers a compound stopping problem, whose reward contains the value function of another stopping problem.
+For $`dX = X\,dW_1`$, $`dY = Y\,dW_2`$ (independent) and reward $`(e^{-rt} - \min(X, Y))_+`$, the stopping region is contained in an L-shaped set, $`\{\min(x,y) \le x^*_1(t)\}`$, where $`x^*_1`$ is the one-dimensional boundary. The DGM and FD stop/continue decisions agree on 98–99% of grid points; the largest value error is 0.03–0.04. The same notebook also covers a compound stopping problem, whose reward contains the value function of another stopping problem.
 
 ![2-D stopping region: DGM (red) vs FD (black line)](figures/02_stop_region_2d.png)
 
 **3. Controlling a jump intensity as a penalised version of optimal stopping** ([`03_jump_intensity_control`](03_jump_intensity_control/))
 
-The agent controls the intensity $\lambda$ of a Poisson process, stops at its first jump, and pays $\tfrac{\varphi}{2}\lambda^2$ per unit time. The HJB equation is
-$$(\partial_t + \mathcal{L})h + \tfrac{1}{2\varphi}\big((H-h)_+\big)^2 = 0, \qquad \lambda^* = (H-h)_+/\varphi,$$
-a quadratic-penalty approximation of optimal stopping. It converges to the optimal stopping value at rate $\sqrt{\varphi}$ (deep in the stopping region, $H - h \approx \sqrt{2\varphi r e^{-rt}}$). FD, DGM and Monte Carlo (40,000 paths) agree to about $10^{-3}$.
+The agent controls the intensity $`\lambda`$ of a Poisson process, stops at its first jump, and pays $`\tfrac{\varphi}{2}\lambda^2`$ per unit time. The HJB equation is
+
+```math
+(\partial_t + \mathcal{L})h + \tfrac{1}{2\varphi}\big((H-h)_+\big)^2 = 0, \qquad \lambda^* = (H-h)_+/\varphi,
+```
+
+a quadratic-penalty approximation of optimal stopping. It converges to the optimal stopping value at rate $`\sqrt{\varphi}`$ (deep in the stopping region, $`H - h \approx \sqrt{2\varphi r e^{-rt}}`$). FD, DGM and Monte Carlo (40,000 paths) agree to about $`10^{-3}`$.
 
 ![Optimal intensity lambda* with simulated stopping points](figures/03_lambda_heatmap.png)
 
