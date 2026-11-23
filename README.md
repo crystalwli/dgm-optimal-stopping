@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 
 - `01_smoothing_fix/01_smoothing_fix.ipynb`: run in Jupyter, about 2 minutes on CPU.
-- `02_compound_and_2d_stopping/compound_and_2d_stopping.ipynb`: saved with all outputs. Re-running needs `fd_ref.py` in the same folder and takes over 30 minutes on CPU.
+- `02_compound_and_2d_stopping/compound_and_2d_stopping.ipynb`: view only. It is saved with all outputs and figures. It imports a finite-difference helper module (`fd_ref.py`) that was not kept, so it cannot be re-run as is.
 - `03_jump_intensity_control/`:
   ```bash
   python step1_fd.py        # FD solutions, about 15 s
